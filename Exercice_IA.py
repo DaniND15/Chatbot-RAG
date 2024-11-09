@@ -264,7 +264,7 @@ def main():
             st.rerun()
 
     # Initialisation du client Mistral
-    client = Mistral(MISTRAL_API_KEY=MISTRAL_API_KEY)
+    client = Mistral(api_key=MISTRAL_API_KEY)
 
     # Affichage de l'historique
     display_chat_history(st.session_state.chat_manager, st.session_state.current_chat_id)
