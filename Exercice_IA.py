@@ -85,11 +85,11 @@ class ChatManager:
 class ChatNameGenerator:
     def __init__(self):
         try:
-            self.nlp = spacy.load("fr_core_news_sm")
+            self.nlp = spacy.load()
         except OSError:
-            # st.error("Modèle spaCy manquant. Installez-le avec : python -m spacy download fr_core_news_sm")
-            # self.nlp = None
-            pass
+            st.error("Modèle spaCy manquant. Installez-le avec : python -m spacy download fr_core_news_sm")
+            self.nlp = None
+            
 
     def generate_chat_name(self, user_input: str, max_length: int = 40) -> str:
         if not self.nlp:
