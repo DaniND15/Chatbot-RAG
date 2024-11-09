@@ -1,0 +1,6 @@
+streamlit
+spacy
+typing-extensions
+mistralai
+requests
+python-dotenv
