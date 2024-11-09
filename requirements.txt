@@ -4,3 +4,4 @@ typing-extensions
 mistralai
 requests
 python-dotenv
+fr_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.7.0/fr_core_news_sm-3.7.0-py3-none-any.whl
