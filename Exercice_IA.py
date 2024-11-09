@@ -82,30 +82,30 @@ class ChatManager:
             return True
         return False
 
-class ChatNameGenerator:
-    def __init__(self):
-        try:
-            self.nlp = spacy.load()
-        except OSError:
-            st.error("Modèle spaCy manquant. Installez-le avec : python -m spacy download fr_core_news_sm")
-            self.nlp = None
+# class ChatNameGenerator:
+#     def __init__(self):
+#         try:
+#             self.nlp = spacy.load()
+#         except OSError:
+#             st.error("Modèle spaCy manquant. Installez-le avec : python -m spacy download fr_core_news_sm")
+#             self.nlp = None
             
 
-    def generate_chat_name(self, user_input: str, max_length: int = 40) -> str:
-        if not self.nlp:
-            return user_input[:max_length]
+#     def generate_chat_name(self, user_input: str, max_length: int = 40) -> str:
+#         if not self.nlp:
+#             return user_input[:max_length]
         
-        doc = self.nlp(user_input.strip())
-        custom_stops = {
-            "bonjour", "salut", "hello", "hey", "s'il vous plait", "svp", 
-            "pouvez-vous", "peux-tu", "j'aimerais", "je voudrais", "je veux"
-        }
+#         doc = self.nlp(user_input.strip())
+#         custom_stops = {
+#             "bonjour", "salut", "hello", "hey", "s'il vous plait", "svp", 
+#             "pouvez-vous", "peux-tu", "j'aimerais", "je voudrais", "je veux"
+#         }
         
-        key_phrases = [chunk.text for chunk in doc.noun_chunks 
-                      if chunk.text.lower() not in custom_stops]
+#         key_phrases = [chunk.text for chunk in doc.noun_chunks 
+#                       if chunk.text.lower() not in custom_stops]
         
-        chat_name = key_phrases[0] if key_phrases else user_input[:max_length]
-        return chat_name.capitalize()[:max_length]
+#         chat_name = key_phrases[0] if key_phrases else user_input[:max_length]
+#         return chat_name.capitalize()[:max_length]
 
 def load_json_data() -> None:
     """Charge les données JSON dans la session Streamlit"""
@@ -278,15 +278,15 @@ def main():
             # Affichage du message utilisateur
             st.chat_message("user").write(user_input)
             
-            # Génération du nom de la conversation si première interaction
-            if (len(current_chat["messages"]) == 0 and 
-                current_chat["name"] == "Nouvelle conversation"):
-                name_generator = ChatNameGenerator()
-                chat_name = name_generator.generate_chat_name(user_input)
-                st.session_state.chat_manager.rename_chat(
-                    st.session_state.current_chat_id, 
-                    chat_name
-                )
+            # # Génération du nom de la conversation si première interaction
+            # if (len(current_chat["messages"]) == 0 and 
+            #     current_chat["name"] == "Nouvelle conversation"):
+            #     name_generator = ChatNameGenerator()
+            #     chat_name = name_generator.generate_chat_name(user_input)
+            #     st.session_state.chat_manager.rename_chat(
+            #         st.session_state.current_chat_id, 
+            #         chat_name
+            #     )
             
 
             # Ajout du message utilisateur
